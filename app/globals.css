@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────
+   Design Tokens
+───────────────────────────────────────── */
+:root {
+  /* Page & surface */
+  --page-bg:      #f2f2f7;
+  --card-bg:      #ffffff;
+  --sidebar-bg:   #ffffff;
+
+  /* Borders */
+  --border:       rgba(0, 0, 0, 0.07);
+  --border-input: #d1d5db;
+
+  /* Shadows */
+  --shadow-xs:   0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-card: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+
+  /* Accent (Indigo) */
+  --accent:       #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-light: #eef2ff;
+  --accent-ring:  rgba(79,70,229,0.15);
+  --accent-text:  #3730a3;
+
+  /* Typography */
+  --text-1: #0f172a;
+  --text-2: #334155;
+  --text-3: #64748b;
+  --text-4: #94a3b8;
+  --text-5: #cbd5e1;
+
+  /* Radius scale */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ─────────────────────────────────────────
+   Tailwind Theme Extension
+───────────────────────────────────────── */
+@theme inline {
+  --color-background: var(--page-bg);
+  --color-foreground: var(--text-1);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+
+  /* Expose token colors as Tailwind utilities */
+  --color-page:    var(--page-bg);
+  --color-card:    var(--card-bg);
+  --color-accent:  var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+}
+
+/* ─────────────────────────────────────────
+   Base Reset
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--text-1);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────
+   Scrollbar
+───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ─────────────────────────────────────────
+   Text Selection
+───────────────────────────────────────── */
+::selection {
+  background: #c7d2fe;
+  color: #1e1b4b;
+}
+
+/* ─────────────────────────────────────────
+   Reusable Component Classes
+   (Used across multiple components)
+───────────────────────────────────────── */
+
+/* Card */
+.ui-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+/* Input / Textarea / Select */
+.ui-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--text-1);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-xs);
+}
+.ui-input::placeholder {
+  color: var(--text-4);
+}
+.ui-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring), var(--shadow-xs);
+}
+.ui-input:disabled {
+  background: #f8fafc;
+  color: var(--text-4);
+  cursor: not-allowed;
+}
+
+/* Primary button */
+.ui-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5625rem 1.125rem;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 2px rgba(79,70,229,0.25);
+}
+.ui-btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 2px 6px rgba(79,70,229,0.3);
+}
+.ui-btn-primary:active {
+  transform: scale(0.98);
+}
+.ui-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary button */
+.ui-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5625rem 1rem;
+  background: #ffffff;
+  color: var(--text-2);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  box-shadow: var(--shadow-xs);
+}
+.ui-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #9ca3af;
+}
+
+/* Ghost button */
+.ui-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 0.75rem;
+  background: transparent;
+  color: var(--text-3);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.ui-btn-ghost:hover {
+  background: #f1f5f9;
+  color: var(--text-2);
+}
+
+/* Accordion item */
+.ui-accordion {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.ui-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #fafafa;
+  transition: background 0.15s ease;
+}
+.ui-accordion-header:hover {
+  background: #f4f4f5;
+}
+.ui-accordion-body {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Tag / pill */
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  background: var(--accent-light);
+  color: var(--accent-text);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Status badges */
+.ui-badge-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.ui-badge-success::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Notice / alert boxes */
+.ui-notice {
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.ui-notice-amber {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+.ui-notice-red {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+.ui-notice-green {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #14532d;
+}
+
+/* Field label */
+.ui-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 0.375rem;
+}
+
+/* Section card title */
+.ui-section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.ui-section-desc {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  margin-top: 0.25rem;
+}
+
+/* Divider */
+.ui-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* Dashed add button */
+.ui-add-btn {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1.5px dashed #c7d2fe;
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  text-align: center;
+}
+.ui-add-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* Spinner */
+.ui-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e2e8f0;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
