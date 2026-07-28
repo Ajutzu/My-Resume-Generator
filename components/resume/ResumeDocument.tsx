@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import type { GeneratedResume } from "@/lib/types";
 import ResumeHeader from "./ResumeHeader";
 import ResumeSummary from "./ResumeSummary";
@@ -12,20 +11,19 @@ interface Props {
   resume: GeneratedResume;
 }
 
-const ResumeDocument = forwardRef<HTMLDivElement, Props>(function ResumeDocument(
-  { resume },
-  ref
-) {
+export default function ResumeDocument({ resume }: Props) {
   return (
     <div
-      ref={ref}
       id="resume-document"
-      className="bg-white text-zinc-900"
       style={{
-        padding: "48px 56px",
-        maxWidth: "816px",
+        width: "794px",
+        minHeight: "1123px",
+        padding: "56px 64px",
         margin: "0 auto",
-        fontFamily: '"Times New Roman", Times, serif',
+        backgroundColor: "#ffffff",
+        color: "#111827",
+        fontFamily: 'Georgia, "Book Antiqua", "Palatino Linotype", serif',
+        boxSizing: "border-box",
       }}
     >
       <ResumeHeader personalInfo={resume.personalInfo} />
@@ -38,6 +36,4 @@ const ResumeDocument = forwardRef<HTMLDivElement, Props>(function ResumeDocument
       <ResumeCertifications certifications={resume.certifications} />
     </div>
   );
-});
-
-export default ResumeDocument;
+}

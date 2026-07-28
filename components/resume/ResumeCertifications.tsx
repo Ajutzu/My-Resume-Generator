@@ -1,7 +1,20 @@
 import type { Certification } from "@/lib/types";
 
-const SECTION_TITLE =
-  "text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 pb-1.5 mb-3 border-b border-zinc-200";
+const SECTION_TITLE: React.CSSProperties = {
+  fontSize: "10px",
+  fontWeight: "normal",
+  textTransform: "uppercase",
+  letterSpacing: "0.15em",
+  color: "#71717a",
+  paddingBottom: "6px",
+  marginBottom: "12px",
+  borderBottom: "1px solid #e4e4e7",
+  breakAfter: "avoid",
+};
+
+function displayUrl(url: string): string {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
 
 interface Props {
   certifications: Certification[];
@@ -12,31 +25,26 @@ export default function ResumeCertifications({ certifications }: Props) {
   if (entries.length === 0) return null;
 
   return (
-    <section className="mb-5">
-      <h2 className={SECTION_TITLE}>Certifications</h2>
-      <div className="space-y-3">
+    <section style={{ marginBottom: "18px" }}>
+      <h2 style={SECTION_TITLE}>Certifications</h2>
+      <div>
         {entries.map((cert) => {
-          const meta = [cert.issuer, cert.date].filter(Boolean).join(" · ");
+          const meta = [cert.issuer, cert.date].filter(Boolean).join("  ·  ");
 
           return (
-            <div key={cert.id}>
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="text-[13px] font-semibold text-zinc-900">
+            <div key={cert.id} style={{ marginBottom: "10px", breakInside: "avoid" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "16px" }}>
+                <h3 style={{ fontSize: "13px", fontWeight: "bold", color: "#111827", margin: 0 }}>
                   {cert.name}
                 </h3>
                 {cert.credentialUrl && (
-                  <a
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[12px] text-zinc-500 hover:text-zinc-800 shrink-0 transition-colors"
-                  >
-                    Credential ↗
-                  </a>
+                  <span style={{ fontSize: "11px", color: "#6b7280", flexShrink: 0 }}>
+                    {displayUrl(cert.credentialUrl)}
+                  </span>
                 )}
               </div>
               {meta && (
-                <p className="text-[12px] text-zinc-500 mt-0.5">{meta}</p>
+                <p style={{ fontSize: "12px", color: "#4b5563", marginTop: "2px", marginBottom: 0 }}>{meta}</p>
               )}
             </div>
           );

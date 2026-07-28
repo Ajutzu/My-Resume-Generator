@@ -1,5 +1,14 @@
-const SECTION_TITLE =
-  "text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 pb-1.5 mb-3 border-b border-zinc-200";
+const SECTION_TITLE: React.CSSProperties = {
+  fontSize: "10px",
+  fontWeight: "normal",
+  textTransform: "uppercase",
+  letterSpacing: "0.15em",
+  color: "#71717a",
+  paddingBottom: "6px",
+  marginBottom: "12px",
+  borderBottom: "1px solid #e4e4e7",
+  breakAfter: "avoid",
+};
 
 interface Props {
   summary: string;
@@ -9,9 +18,9 @@ export default function ResumeSummary({ summary }: Props) {
   if (!summary.trim()) return null;
 
   return (
-    <section className="mb-5">
-      <h2 className={SECTION_TITLE}>Professional Summary</h2>
-      <p className="text-[13px] text-zinc-700 leading-relaxed">{summary}</p>
+    <section style={{ marginBottom: "18px", breakInside: "avoid" }}>
+      <h2 style={SECTION_TITLE}>Professional Summary</h2>
+      <p style={{ fontSize: "13px", color: "#374151", lineHeight: 1.6, margin: 0 }}>{summary}</p>
     </section>
   );
 }

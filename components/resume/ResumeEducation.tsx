@@ -1,7 +1,16 @@
 import type { Education } from "@/lib/types";
 
-const SECTION_TITLE =
-  "text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 pb-1.5 mb-3 border-b border-zinc-200";
+const SECTION_TITLE: React.CSSProperties = {
+  fontSize: "10px",
+  fontWeight: "normal",
+  textTransform: "uppercase",
+  letterSpacing: "0.15em",
+  color: "#71717a",
+  paddingBottom: "6px",
+  marginBottom: "12px",
+  borderBottom: "1px solid #e4e4e7",
+  breakAfter: "avoid",
+};
 
 function formatRange(start: string, end: string): string {
   return [start, end].filter(Boolean).join(" – ");
@@ -16,30 +25,30 @@ export default function ResumeEducation({ education }: Props) {
   if (entries.length === 0) return null;
 
   return (
-    <section className="mb-5">
-      <h2 className={SECTION_TITLE}>Education</h2>
-      <div className="space-y-4">
+    <section style={{ marginBottom: "18px" }}>
+      <h2 style={SECTION_TITLE}>Education</h2>
+      <div>
         {entries.map((edu) => {
           const range = formatRange(edu.startDate, edu.endDate);
-          const meta = [edu.school, edu.location].filter(Boolean).join(" · ");
+          const meta = [edu.school, edu.location].filter(Boolean).join("  ·  ");
 
           return (
-            <div key={edu.id}>
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="text-[14px] font-semibold text-zinc-900 leading-snug">
+            <div key={edu.id} style={{ marginBottom: "12px", breakInside: "avoid" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "16px" }}>
+                <h3 style={{ fontSize: "13px", fontWeight: "bold", color: "#111827", margin: 0, lineHeight: 1.4 }}>
                   {edu.degree}
                 </h3>
                 {range && (
-                  <span className="text-[12px] text-zinc-500 shrink-0">
+                  <span style={{ fontSize: "12px", color: "#6b7280", flexShrink: 0 }}>
                     {range}
                   </span>
                 )}
               </div>
               {meta && (
-                <p className="text-[13px] text-zinc-600 mt-0.5">{meta}</p>
+                <p style={{ fontSize: "12px", color: "#4b5563", marginTop: "2px", marginBottom: 0 }}>{meta}</p>
               )}
               {edu.description.trim() && (
-                <p className="text-[13px] text-zinc-700 mt-1 leading-relaxed">
+                <p style={{ fontSize: "13px", color: "#374151", marginTop: "4px", marginBottom: 0, lineHeight: 1.6 }}>
                   {edu.description.trim()}
                 </p>
               )}
