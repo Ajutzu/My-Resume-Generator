@@ -136,20 +136,6 @@ resume-generator/
 └── docker-compose.yml       # Single-service compose file
 ```
 
----
-
-## Adding Your GCash QR Code
-
-Place your GCash QR code image at:
-
-```
-public/gcash-qr.png
-```
-
-It will appear at the bottom of the sidebar under "Support the project". The sidebar shows a placeholder with instructions until the image is present.
-
----
-
 ## Privacy & Security
 
 - **No backend** — the application is fully client-side. There is no database, no authentication, no server that receives your data.
