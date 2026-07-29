@@ -23,8 +23,8 @@ A self-hosted, open-source, client-side AI resume generator. Bring your own API 
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd resume-generator
+git clone https://github.com/Ajutzu/My-Resume-Generator.git
+cd My-Resume-Generator
 
 # Install dependencies
 npm install
