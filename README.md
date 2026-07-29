@@ -10,7 +10,8 @@ A self-hosted, open-source, client-side AI resume generator. Bring your own API 
 - **Multiple AI Providers** — Groq (free), xAI Grok, OpenAI, Google Gemini, Anthropic Claude, or any OpenAI-compatible endpoint via custom model ID.
 - **Master Profile** — Build a comprehensive profile once (personal info, summary, skills, work experience, projects, education, certifications). Import/export as JSON.
 - **Tailored Resumes** — The AI rewrites your resume to match each specific job description without fabricating information.
-- **PDF Export** — Print-to-PDF via the browser's native print dialog. No canvas rendering, no server required.
+- **Editable Preview** — Click any text in the preview to edit it directly before saving.
+- **ATS-Friendly PDF** — Print-to-PDF via the browser's native print dialog. Real searchable text — no canvas/image rendering.
 - **Self-hostable** — Run locally with `npm run dev` or deploy with Docker in one command.
 - **Modern UI** — Clean admin dashboard interface with Inter font, light theme, and responsive mobile layout.
 
@@ -80,9 +81,17 @@ Go to the **Profile** tab and fill in your information:
 
 Use **Export JSON** to back up your profile, and **Import JSON** to restore it. The **Markdown** tab shows exactly what the AI will receive.
 
+![Fill up your profile form](images/fill-up-your-form.png)
+
+---
+
 ### 2 — Paste the Job Description
 
 Go to the **Job Description** tab and paste the full job posting. The more detail you provide, the better the tailoring.
+
+![Paste the job description](images/prompt-of-job-description.png)
+
+---
 
 ### 3 — Configure AI Settings
 
@@ -91,15 +100,27 @@ Go to **AI Settings** and:
 1. Select a provider (Groq is recommended for free usage)
 2. Choose a model
 3. Paste your API key
-4. Optionally check "Remember API key" to persist it in localStorage
+4. Optionally check **Remember API key** to persist it in localStorage
+
+![Select model and configure AI settings](images/select-model-to-generate-your-resume.png)
+
+---
 
 ### 4 — Generate
 
 Go to **Generate** and check the pre-flight checklist (profile content, job description, API key). Click **Generate Resume**. Generation typically takes 10–30 seconds depending on the model.
 
+![Generate resume page with pre-flight check](images/generate-resume-page.png)
+
+---
+
 ### 5 — Preview and Export
 
-Go to **Preview** to see your tailored resume. Click **Export PDF** to open the browser's print dialog — select "Save as PDF" and choose A4 paper size with no margins.
+Go to **Preview** to see your tailored resume rendered as a real A4 document. You can **click any text to edit it** directly before saving.
+
+Click **Print / Save as PDF** → in the print dialog, set the destination to **Save as PDF** and paper size to **A4**.
+
+![Preview and editable output](images/output-resume-can-edit.png)
 
 ---
 
@@ -130,6 +151,7 @@ resume-generator/
 │   ├── parser.ts            # JSON response parser + fallback merger
 │   ├── markdown.ts          # Profile → Markdown converter
 │   └── utils.ts             # generateId()
+├── images/                  # Screenshots for documentation
 ├── public/
 │   └── gcash-qr.png         # (Add your GCash QR here)
 ├── Dockerfile               # Multi-stage build (Alpine, non-root)
@@ -196,8 +218,7 @@ npm start
 - React 19 (`useSyncExternalStore` for client storage)
 - Tailwind CSS v4
 - TypeScript (strict)
-- Inter font (UI) · Times New Roman (resume document)
-- react-to-print (PDF export via browser print)
+- Inter font (UI) · Georgia (resume document)
 
 ---
 
