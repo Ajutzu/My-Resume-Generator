@@ -1,8 +1,7 @@
-# AJ Resume Generator
+![Generate resume page with pre-flight check](images/Banner.png)
+---
 
 A self-hosted, open-source, client-side AI resume generator. Bring your own API key — your data never leaves your browser.
-
----
 
 ## Features
 
@@ -249,4 +248,10 @@ style={{
 
 ## License
 
-MIT — free to use, modify, and self-host.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+**You are free to:** use, copy, modify, and distribute this software.
+
+**You must:** keep the original copyright notice and attribution to **Ajutzu** in all copies or substantial portions of the software. You may not claim this project as your own.
+
+> Copyright (c) 2026 Ajutzu
